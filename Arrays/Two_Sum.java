@@ -20,7 +20,7 @@ Output: [1,2]
 This solution has O(n) time complexity
  */
 
-
+package Arrays;
 import java.util.HashMap;
 
 class Two_Sum {
