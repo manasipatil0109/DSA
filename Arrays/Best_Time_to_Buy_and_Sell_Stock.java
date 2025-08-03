@@ -25,6 +25,9 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 package Arrays;
 
 public class Best_Time_to_Buy_and_Sell_Stock {
+    /*
+     * Solution 1
+     */
     public int maxProfit(int[] prices) {
         int min=Integer.MAX_VALUE;
         int max=0;
@@ -36,4 +39,22 @@ public class Best_Time_to_Buy_and_Sell_Stock {
         }
         return max;
     }
+
+    /* 
+     * Solution 2
+     */
+     public int maxProfit1(int[] prices) {
+        int profit=0, min=prices[0];
+        for(int i=1;i<prices.length;i++){
+            if((prices[i]-min) > profit)
+                profit = prices[i]-min;
+            min=min>prices[i]?prices[i]:min;
+        }
+        return profit;
+    }
+
+    /*
+     * Solution 3
+     */
+    
 }
