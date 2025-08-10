@@ -38,7 +38,7 @@ The output is 3 + 0 = 3.
 
  */
 
-package Arrays;
+package Strings;
 
 import java.util.HashMap;
 import java.util.Map;

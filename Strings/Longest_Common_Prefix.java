@@ -17,7 +17,7 @@ Explanation: There is no common prefix among the input strings.
 
  */
 
-package Arrays;
+package Strings;
 
 class Longest_Common_Prefix {
 

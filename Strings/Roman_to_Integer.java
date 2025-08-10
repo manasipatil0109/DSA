@@ -38,7 +38,7 @@ Output: 1994
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
  */
 
-package Arrays;
+package Strings;
 
 import java.util.HashMap;
 
