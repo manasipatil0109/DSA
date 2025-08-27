@@ -44,4 +44,9 @@ public class First_Bad_Version {
         }
         return l;
     }
+
+    private boolean isBadVersion(int mid) {
+        //code to check isBadVersion or not temporary ssending false
+        return false;
+    }
 }
