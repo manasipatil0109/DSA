@@ -55,22 +55,30 @@ public class Guess_Game {
         while(l<=r){
             int mid = l+(r-l)/2;
             int ra = guess(mid);
-                        if(ra==0)
-                            return mid;
-                        else if(ra==1)
-                            l=mid+1;
-                        else
-                            r=mid-1;
-                    }
-                    return -1;
+                                    if(ra==0)
+                                        return mid;
+                                    else if(ra==1)
+                                        l=mid+1;
+                                    else
+                                        r=mid-1;
+                                }
+                                return -1;
+                        
+                                /*
+                                 * This solution gave time limit exceeded issue
+                                 */
+                                // int r=(int)(Math.random()*n)+1;
+                                // while(guess(r)!=0){
+                                //     r = (int)(Math.random()*n)+1;
+                                // }
+                                // return r;
+                            }
             
-                    /*
-                     * This solution gave time limit exceeded issue
-                     */
-                    // int r=(int)(Math.random()*n)+1;
-                    // while(guess(r)!=0){
-                    //     r = (int)(Math.random()*n)+1;
-                    // }
-                    // return r;
+                /*
+                 * Unnecessary code part
+                 */
+                private int guess(int mid) {
+                    // TODO Auto-generated method stub
+                    throw new UnsupportedOperationException("Unimplemented method 'guess'");
                 }
 }
