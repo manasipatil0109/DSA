@@ -69,7 +69,7 @@ public class Town_Judge {
     }
 
     /*
-     * Solution 2: faster
+     * Solution 2: faster 3ms
      */
     public int findJudge1(int n, int[][] trust) {
         int[] inbound= new int[n];
