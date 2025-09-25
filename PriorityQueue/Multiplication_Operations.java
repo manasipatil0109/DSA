@@ -77,4 +77,23 @@ public class Multiplication_Operations {
         }
         return nums;
     }
+
+
+    /*
+     * Solution 2
+     */
+    public int[] getFinalState1(int[] nums, int k, int multiplier) {
+        for(int i=0;i<k;i++){
+            int min=Integer.MAX_VALUE;
+            int index=-1;
+            for(int j=0;j<nums.length;j++){
+                if(min>nums[j]){
+                    min=nums[j];
+                    index=j;
+                }
+            }
+            nums[index]=nums[index]*multiplier;
+        }
+        return nums;
+    }
 }
