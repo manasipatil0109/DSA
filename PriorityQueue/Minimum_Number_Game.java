@@ -36,6 +36,7 @@ nums.length % 2 == 0
 package PriorityQueue;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class Minimum_Number_Game {
     /*
@@ -51,4 +52,21 @@ public class Minimum_Number_Game {
         }
         return nums;
     }
+
+
+    /*
+     * Solution 2
+     */
+    public int[] numberGame1(int[] nums) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)->a-b);
+        for(int i=0;i<nums.length;i++)
+            pq.add(nums[i]);
+        for(int i=0;i<nums.length;){
+            nums[i+1]=pq.poll();
+            nums[i]=pq.poll();
+            i=i+2;
+        }
+        return nums;
+    }
+
 }
