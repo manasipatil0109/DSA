@@ -46,6 +46,7 @@ n == grid[i].length
 package PriorityQueue;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class Delete_Greatest_Value {
 
@@ -63,6 +64,32 @@ public class Delete_Greatest_Value {
             int max=0;
             for(int i=0;i<m;i++){
                 max=Math.max(max,grid[i][j]);
+            }
+            ans+=max;
+        }
+        return ans;
+    }
+
+
+    /*
+     * Solution 2: PriorityQueue arrray
+     */
+    public int deleteGreatestValue1(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        PriorityQueue<Integer>[] pq = new PriorityQueue[m];
+        for(int i=0;i<m;i++){
+            pq[i] = new PriorityQueue<>((a,b)->b-a);
+            for(int val:grid[i]){
+                pq[i].add(val);
+            }
+        }
+        int ans=0;
+        for(int i=0;i<n;i++){
+            int max=0;
+            for(int j=0;j<m;j++){
+                int v = pq[j].poll();
+                max=Math.max(max,v);
             }
             ans+=max;
         }
