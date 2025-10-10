@@ -60,4 +60,29 @@ public class Median_of_Two_Sorted_Arrays {
         }
         return (double)totalArr[totalArr.length/2];
     }
+
+
+    /*
+     * Solution 2- without new array
+     */
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int s1=0, s2=0, l1=nums1.length, l2=nums2.length;
+        int mid = (l1+l2)/2;
+        int count=0;
+        int prev=0, curr=0;
+        while(count<=mid){
+            prev=curr;
+            if(s1<l1 && (s2>l2-1 || nums1[s1]<=nums2[s2]))
+                curr= nums1[s1++];
+            else
+                curr = nums2[s2++];
+            count++;
+        }
+
+
+        if((l1+l2)%2==0){
+            return (double)(prev+curr)/2;
+        }
+        return (double)curr;
+    }
 }
