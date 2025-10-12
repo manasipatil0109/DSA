@@ -39,7 +39,9 @@ At most 104 calls will be made to put, get, and remove.
 
 package General;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Design_HashMap {
     /*
@@ -62,6 +64,58 @@ public class Design_HashMap {
         
         public void remove(int key) {
             keyMap[key]=-1;
+        }
+    }
+
+
+    /*
+     * Solution 3 - takes lot of time
+     */
+    class keyMap{
+        int key;
+        int val;
+        public keyMap(int key, int val){
+            this.key = key;
+            this.val=val;
+        }
+    }
+
+    class MyHashMap2 {
+        List<keyMap> k;
+        public MyHashMap2() {
+            k=new ArrayList<>();
+        }
+        
+        public void put(int key, int value) {
+            boolean flag=true;
+            for(keyMap i:k){
+                if(i.key == key){
+                    i.val=value;
+                    flag=false;
+                }
+            }
+            if(flag)
+                k.add(new keyMap(key,value));
+        }
+        
+        public int get(int key) {
+            for(keyMap i:k){
+                if(i.key == key)
+                    return i.val;
+            }
+            return -1;
+        }
+        
+        public void remove(int key) {
+            int count=0;
+            for(keyMap i:k){
+                if(i.key == key){
+                    break;
+                }
+                count++;
+            }
+            if(count<k.size())
+                k.remove(count);
         }
     }
 }
