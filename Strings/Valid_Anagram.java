@@ -29,9 +29,27 @@ s and t consist of lowercase English letters.
 
 package Strings;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Valid_Anagram {
+
+    /*
+     * Solution 3 - fastest solution
+     */
+    public boolean isAnagram3(String s, String t) {
+        if(s.length()!=t.length())
+            return false;
+        char[] sa=s.toCharArray();
+        Arrays.sort(sa);
+        char[] ta=t.toCharArray();
+        Arrays.sort(ta);
+        s=new String(sa);
+        t=new String(ta);
+        return s.equals(t);
+    }
+
+
     /*
      * Solution 1
      */
