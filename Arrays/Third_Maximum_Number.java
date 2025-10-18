@@ -46,7 +46,7 @@ package Arrays;
 public class Third_Maximum_Number {
 
     /* 
-     * Solution 1 - 0ms
+     * Solution 1 - 0ms time only
      */
     public int thirdMax1(int[] nums) {
         long n1=Long.MIN_VALUE, n2=Long.MIN_VALUE, n3=Long.MIN_VALUE;
