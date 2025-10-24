@@ -30,8 +30,27 @@ Follow up: Could you do it in O(n) time and O(1) space?
 package LinkedList;
 
 public class Palindrome_LL {
+
     /*
-     * Solution 2 - very slow
+     * Solution 2 - using StringBuilder
+     */
+    public boolean isPalindrome1(ListNode head) {
+        StringBuilder s=new StringBuilder();
+        while(head!=null){
+            s.append(head.val);
+            head=head.next;
+        }
+        for(int i=0,j=s.length()-1;i<=j;i++,j--){
+            if(s.charAt(i) != s.charAt(j)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /*
+     * Solution 2 - very slow, when we do s+= it created new string which leads to O(n2) time
+     * 
      */
     public boolean isPalindrome(ListNode head) {
         String s="";
