@@ -41,4 +41,18 @@ public class Remove_Duplicates {
         }
         return head;
     }
+
+     /*
+     * Solution 2
+     */
+    public ListNode deleteDuplicates1(ListNode head) {
+        ListNode temp = head;
+        while(temp!=null && temp.next!=null){
+            if(temp.val == temp.next.val)
+                temp.next=temp.next.next;
+            else
+                temp=temp.next;
+        }
+        return head;
+    }
 }
