@@ -29,7 +29,43 @@ Follow up: Could you do it in O(n) time and O(1) space?
 
 package LinkedList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Palindrome_LL {
+
+    /*
+     * Solution 1 - using only LL - 7ms
+     */
+    public ListNode reverseList(ListNode head){
+        if(head==null || head.next==null)
+            return head;
+        ListNode s = reverseList(head.next);
+        head.next.next=head;
+        head.next=null;
+        return s;
+    }
+    public boolean isPalindrome2(ListNode head) {
+
+        ListNode slow = head, fast = head;
+        //Going hald the list
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+
+        //reversing seconf half of the list
+        ListNode sL = reverseList(slow);
+
+        while(sL!=null){
+            if(head.val != sL.val){
+                return false;
+            }
+            head=head.next;
+            sL=sL.next;
+        }
+        return true;
+    }
 
     /*
      * Solution 2 - using StringBuilder
@@ -62,6 +98,25 @@ public class Palindrome_LL {
             if(s.charAt(i) != s.charAt(j)){
                 return false;
             }
+        }
+        return true;
+    }
+
+
+    /*
+     * Solution 4- using arrayList - 7ms, if used arrays then 3ms
+     */
+    public boolean isPalindrome3(ListNode head) {
+        List<Integer> sl = new ArrayList<>();
+        ListNode temp = head;
+        while(temp!=null){
+            sl.add(temp.val);
+            temp=temp.next;
+        }
+
+        for(int i=0,j=sl.size()-1;i<=j;i++,j--){
+            if(sl.get(i) != sl.get(j))
+                return false;
         }
         return true;
     }
