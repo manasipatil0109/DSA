@@ -29,6 +29,7 @@ The number of nodes in the tree is in the range [0, 104].
 
 package Tree;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -79,5 +80,47 @@ public class Serialize_and_Deserialize_Binary_Tree {
             i++;
         }
         return head;
+    }
+
+
+    /*
+     * Solution 2 - recursion
+     */
+    private void preOrder(TreeNode root, StringBuilder sb){
+        if(root==null){
+            sb.append("na");
+            return;
+        }
+        sb.append(root.val);
+        sb.append("a");
+        preOrder(root.left, sb);
+        preOrder(root.right, sb);
+    }
+
+    // Encodes a tree to a single string.
+    public String serialize1(TreeNode root) {
+        StringBuilder sb=new StringBuilder();
+        preOrder(root, sb);
+        return sb.toString();
+    }
+
+
+    private TreeNode preOrderFormD(Queue<String> q){
+        String curr = q.poll();
+        if(curr.equals("n")){
+            return null;
+        }
+        TreeNode head = new TreeNode(Integer.valueOf(curr));
+        head.left = preOrderFormD(q);
+        head.right = preOrderFormD(q);
+        return head;
+    }
+
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize1(String data) {
+        String[] c = data.split("a");
+        Queue<String> q = new LinkedList<>(Arrays.asList(c));
+        return preOrderFormD(q);
     }
 }
