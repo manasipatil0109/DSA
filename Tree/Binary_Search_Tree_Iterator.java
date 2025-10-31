@@ -54,6 +54,7 @@ Could you implement next() and hasNext() to run in average O(1) time and use O(h
 package Tree;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class Binary_Search_Tree_Iterator {
 
@@ -61,26 +62,53 @@ public class Binary_Search_Tree_Iterator {
      * Solution 1
      */
     class BSTIterator {
-    private LinkedList<TreeNode> head;
-    private void inorder(TreeNode root, LinkedList<TreeNode> temp){
-        if(root==null)
-            return;
-        inorder(root.left, temp);
-        temp.add(root);
-        inorder(root.right, temp);
+        private LinkedList<TreeNode> head;
+        private void inorder(TreeNode root, LinkedList<TreeNode> temp){
+            if(root==null)
+                return;
+            inorder(root.left, temp);
+            temp.add(root);
+            inorder(root.right, temp);
+        }
+
+        public BSTIterator(TreeNode root) {
+            head=new LinkedList<>();
+            inorder(root,head);
+        }
+        
+        public int next() {
+            return head.removeFirst().val;
+        }
+        
+        public boolean hasNext() {
+            return !head.isEmpty();
+        }
     }
 
-    public BSTIterator(TreeNode root) {
-        head=new LinkedList<>();
-        inorder(root,head);
+    /*
+     * Solution 2
+     */
+    class BSTIterator1 {
+        private Stack<Integer> head;
+        private void inorder(TreeNode root){
+            if(root==null)
+                return;
+            inorder(root.right);
+            head.push(root.val);
+            inorder(root.left);
+        }
+
+        public BSTIterator1(TreeNode root) {
+            head=new Stack<>();
+            inorder(root);
+        }
+        
+        public int next() {
+            return head.pop();
+        }
+        
+        public boolean hasNext() {
+            return !head.isEmpty();
+        }
     }
-    
-    public int next() {
-        return head.removeFirst().val;
-    }
-    
-    public boolean hasNext() {
-        return !head.isEmpty();
-    }
-}
 }
