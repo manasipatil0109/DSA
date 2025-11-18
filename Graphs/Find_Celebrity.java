@@ -73,7 +73,7 @@ public class Find_Celebrity {
         for(int i=0;i<n;i++){
             boolean isC =true;
             for(int j=0;j<n;j++){
-                if(1!=j && knows(i,j)){
+                if(i!=j && knows(i,j)){
                     isC=false;
                     break;
                 }
