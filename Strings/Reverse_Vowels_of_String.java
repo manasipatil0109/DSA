@@ -33,7 +33,32 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Reverse_Vowels_of_String {
-    public String reverseVowels(String s) {
+
+    /*
+    Solution 1 - faster
+    */
+   public String reverseVowels(String s) {
+        List<Character> vowels = Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U');
+        char[] ch = s.toCharArray();
+        for(int i=0,j=ch.length-1;i<j;){
+            while(i<j && !vowels.contains(ch[i])){
+                i++;
+            }
+            while(i<j && !vowels.contains(ch[j])){
+                j--;
+            }
+            char temp = ch[j];
+            ch[j--]=ch[i];
+            ch[i++]=temp;
+
+        }
+        return new String(ch);
+    }
+
+    /*
+    Solution 2 
+    */
+    public String reverseVowels1(String s) {
         List<Character> vowels = Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U');
         char[] ch = s.toCharArray();
         for(int i=0,j=ch.length-1;i<j;){
