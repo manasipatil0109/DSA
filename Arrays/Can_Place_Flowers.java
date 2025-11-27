@@ -46,4 +46,24 @@ public class Can_Place_Flowers {
 
         return n <= bed;
     }
+
+    /*
+    Solution 2 - faster
+    */
+   public boolean canPlaceFlowers1(int[] flowerbed, int n) {
+
+        int bed =0;
+        for(int i=0;i<flowerbed.length;i+=2){
+            if(flowerbed[i]==0){
+                if(i==flowerbed.length-1 || flowerbed[i+1]==0){
+                    bed++;
+                }else{
+                    i++;
+                }
+            }
+            if(bed>=n)
+                return true;
+        }
+        return false;
+    }
 }
