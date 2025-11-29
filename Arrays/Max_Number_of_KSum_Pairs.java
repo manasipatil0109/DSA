@@ -36,6 +36,7 @@ Constraints:
 
 package Arrays;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,5 +58,29 @@ public class Max_Number_of_KSum_Pairs {
             }
         }
         return l;
+    }
+
+    /*
+    Solution 2 - using binary search method, 2 pointer 
+    */
+   public int maxOperations1(int[] nums, int k) {
+        Arrays.sort(nums);
+        int l=0, r=nums.length-1;
+        int op =0;
+        while(l<r){
+            int mid = nums[l]+nums[r];
+            if(mid == k){
+                op++;
+                l++;
+                r--;
+            }
+            else if(mid<k){
+                l++;
+            }else{
+                r--;
+            }
+        }
+        return op;
+
     }
 }
