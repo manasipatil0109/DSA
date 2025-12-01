@@ -30,6 +30,7 @@ Constraints:
 package Arrays;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -52,5 +53,23 @@ public class Unique_Number_of_Occurrences {
             }
         }
         return !s.contains(count);
+    }
+
+    /*
+    Solution 2 - with set and map and faster 
+    */
+   public boolean uniqueOccurrences1(int[] arr) {
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        HashSet<Integer> hs = new HashSet<>();
+        for(int i: arr)
+            hm.put(i, hm.getOrDefault(i,0)+1);
+
+        for(int i:hm.keySet()){
+            if(hs.contains(hm.get(i)))
+                return false;
+            else
+                hs.add(hm.get(i));
+        }
+        return true;
     }
 }
