@@ -44,6 +44,7 @@ word1 and word2 contain only lowercase English letters.
 
 package Strings;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Determine_if_Two_Strings_Are_Close {
@@ -80,4 +81,47 @@ public class Determine_if_Two_Strings_Are_Close {
 
         return freqCount1.equals(freqCount2);
     }
+
+    /*
+    Solution 2 - faster
+    */
+   public boolean closeStrings1(String word1, String word2) {
+
+        int[] fw1 = new int[26];
+        int[] fw2 = new int[26];
+
+        for(char c:word1.toCharArray())
+            fw1[c-'a']++;
+
+        for(char c:word2.toCharArray())
+            fw2[c-'a']++;
+        
+        for(int i=0;i<26;i++){
+            if((fw1[i]>0) != (fw2[i]>0))
+                return false;
+        }
+
+        Arrays.sort(fw1);
+        Arrays.sort(fw2);
+        return Arrays.equals(fw1,fw2);
+
+
+        // // Alternative Solution
+        // for(int i=0;i<26;i++){
+        //     int w1 = fw1[i];
+        //     if(w1>0){
+        //         for(int j=0;j<26;j++){
+        //             if(w1 == fw2[j]){
+        //                 fw2[j]=0;
+        //                 break;
+        //             }
+        //             if(j==25)
+        //                 return false;
+        //         }
+        //     }
+        // }
+        // return true;
+    }
+
+
 }
