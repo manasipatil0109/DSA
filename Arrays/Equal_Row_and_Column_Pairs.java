@@ -35,6 +35,7 @@ n == grid.length == grid[i].length
 package Arrays;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Equal_Row_and_Column_Pairs {
     /*
@@ -57,4 +58,27 @@ public class Equal_Row_and_Column_Pairs {
         }
         return count;
    }
+
+   /*
+   Solution 2 - faster 
+   */
+  public int equalPairs1(int[][] grid) {
+        int n = grid.length;
+        int count=0;
+        HashMap<String, Integer> hm = new HashMap<>();
+        for(int i=0;i<n;i++){
+            String s = Arrays.toString(grid[i]);
+            hm.put(s,hm.getOrDefault(s,0)+1);
+        }
+
+        for(int i =0;i<n;i++){
+            int[] col = new int[n];
+            for(int j=0;j<n;j++){
+                col[j]=grid[j][i];
+            }
+            String s = Arrays.toString(col);
+            count+=hm.getOrDefault(s,0);
+        }
+        return count;
+    }
 }
