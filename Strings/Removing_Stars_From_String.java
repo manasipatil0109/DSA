@@ -63,5 +63,21 @@ public class Removing_Stars_From_String {
         return sb.reverse().toString();
     }
 
-   
+    /*
+    Solution 2 - faster 
+    */
+   public String removeStars1(String s) {
+        StringBuilder sb =new StringBuilder();
+        for(char c:s.toCharArray()){
+            if(c == '*'){
+                if(sb.length()>0){
+                    sb.deleteCharAt(sb.length()-1);
+                }
+            }
+            else{
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
 }
