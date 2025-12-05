@@ -37,10 +37,14 @@ At most 104 calls will be made to ping.
 
 package Queue;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class Number_of_Recent_Calls {
+    /*
+    Solution 1 
+    */
     class RecentCounter {
         Queue<Integer> q;
         public RecentCounter() {
@@ -52,6 +56,31 @@ public class Number_of_Recent_Calls {
             while(q.peek()<(t-3000))
                 q.poll();
             return q.size();
+        }
+    }
+
+    /*
+    Solution 2 - arrays
+    */
+   class RecentCounter1 {
+        int[] times;
+        public RecentCounter1() {
+            times = new int[3001]; // 3001 to store the start value
+            Arrays.fill(times, Integer.MIN_VALUE);
+        }
+        public int ping(int t) {
+            int idx = t % 3001;
+            times[idx] = t;
+
+            int start = t - 3000;
+            int count = 0;
+
+            for (int val : times) {
+                if (val >= start && val <= t) {
+                    count++;
+                }
+            }
+            return count;
         }
     }
 }
