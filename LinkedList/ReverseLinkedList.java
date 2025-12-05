@@ -49,6 +49,20 @@ public class ReverseLinkedList {
     }
 
     /*
+    * Solution - non recursive
+    */
+   public ListNode reverseList2(ListNode head) {
+        ListNode temp = new ListNode(0);
+        while(head!=null){
+            ListNode t = temp.next;
+            temp.next = head;
+            head=head.next;
+            temp.next.next = t;
+        }
+        return temp.next;
+    }
+
+    /*
      * Solution 2- recursive
      */
     public ListNode reverseList1(ListNode head) {
