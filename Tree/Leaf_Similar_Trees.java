@@ -77,4 +77,29 @@ public class Leaf_Similar_Trees {
     }
      */
 
+
+    /*
+    Solution 2 - non recursive 
+    */
+   private void treeTraversal(TreeNode root, List<Integer> l){
+        Stack<TreeNode> s = new Stack<>();
+        s.push(root);
+        while(!s.isEmpty()){
+            TreeNode temp = s.pop();
+            if(temp.left == null && temp.right == null)
+                l.add(temp.val);
+            if(temp.left!=null)
+                s.push(temp.left);
+            if(temp.right!=null)
+                s.push(temp.right);
+        }
+    }
+    public boolean leafSimilar1(TreeNode root1, TreeNode root2) {
+        List<Integer> s1 = new ArrayList<>();
+        treeTraversal(root1, s1);
+        List<Integer> s2 = new ArrayList<>();
+        treeTraversal(root2, s2);
+        return s1.equals(s2);
+    }
+
 }
