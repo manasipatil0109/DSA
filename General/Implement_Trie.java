@@ -70,4 +70,58 @@ public class Implement_Trie {
             return false;
         }
     }
+
+
+
+    /*
+    Solution 2 - optimized 
+    */
+   class Trie1 {
+        class TrieNode{
+            TrieNode[] child = new TrieNode[26];
+            boolean isEnd = false;
+        }
+
+        TrieNode root;
+
+        public Trie1() {
+            root = new TrieNode();
+        }
+        
+        public void insert(String word) {
+            TrieNode temp = root;
+            for(char c: word.toCharArray()){
+                int idx = c-'a';
+                if(temp.child[idx] == null){
+                    temp.child[idx] = new TrieNode();
+                }
+                temp = temp.child[idx];
+            }
+            temp.isEnd = true;
+        }
+        
+        public boolean search(String word) {
+            TrieNode temp = root;
+            for(char c: word.toCharArray()){
+                int idx = c-'a';
+                if(temp.child[idx] == null){
+                    return false;
+                }
+                temp = temp.child[idx];
+            }
+            return temp.isEnd;
+        }
+        
+        public boolean startsWith(String prefix) {
+            TrieNode temp = root;
+            for(char c: prefix.toCharArray()){
+                int idx = c-'a';
+                if(temp.child[idx] == null){
+                    return false;
+                }
+                temp = temp.child[idx];
+            }
+            return true;
+        }
+    }
 }
