@@ -54,4 +54,26 @@ public class Last_Stone_Weight {
         return pq.poll();
     }
 
+
+
+    /*
+    Solution 2 - same time as sol 2
+    */
+    public int lastStoneWeight2(int[] stones) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)->b-a);
+        for(int stone:stones){
+            pq.add(stone);
+        }
+        while(pq.size()>1){
+            int x = pq.poll();
+            int y = pq.poll();
+            if(y!=x)
+                pq.add(x-y);
+        }
+        if(pq.isEmpty())
+            return 0;
+        else
+            return pq.poll();
+    }
+
 }
