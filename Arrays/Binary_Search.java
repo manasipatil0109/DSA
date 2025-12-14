@@ -51,4 +51,24 @@ public class Binary_Search {
         return binarySearch(nums, 0, nums.length-1, target);
     }
 
+
+
+    /*
+    Solution 2 - non recursive 
+    */
+    public int search1(int[] nums, int target) {
+        int l = 0;
+        int r = nums.length-1;
+        while(l<=r){
+            int mid = l+(r-l)/2;
+            if(nums[mid] == target)
+                return mid;
+            else if(nums[mid] < target)
+                l=mid+1;
+            else
+                r=mid-1;
+        }
+        return -1;
+    }
+
 }
