@@ -76,4 +76,23 @@ public class Last_Stone_Weight {
             return pq.poll();
     }
 
+    /*
+    Solution 2 - not optimized 
+    */
+    public int lastStoneWeight1(int[] stones) {
+        Arrays.sort(stones);
+        int i = stones.length-1;
+        while(i>0 && stones[i-1]!=0){
+            if(stones[i]>stones[i-1]){
+                stones[i-1]=stones[i]-stones[i-1];
+            }else if(stones[i]==stones[i-1]){
+                stones[i-1]=0;
+            }else{
+                stones[i-1]-=stones[i];
+            }
+            stones[i]=0;
+            Arrays.sort(stones);
+        }
+        return stones[i];
+    }
 }
