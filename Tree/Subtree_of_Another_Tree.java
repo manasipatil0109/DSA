@@ -57,4 +57,25 @@ public class Subtree_of_Another_Tree {
         }
         return false;
     }
+
+
+
+    /*
+    Solution 2 - recursive 
+    */
+   public boolean isSubtree1(TreeNode root, TreeNode subRoot) {
+        if(root == null && subRoot == null)
+            return true;
+        if(root == null || subRoot == null)
+            return false;
+        if(root.val == subRoot.val){
+            if(isEqual(root,subRoot))
+                return true;
+            else
+                return isSubtree(root.left,subRoot) || isSubtree(root.right, subRoot);
+
+        } else{
+            return isSubtree(root.left,subRoot) || isSubtree(root.right, subRoot);
+        }
+    }
 }
