@@ -39,7 +39,9 @@ Follow up: Your algorithm's time complexity must be better than O(n log n), wher
 
 package Arrays;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
@@ -86,6 +88,24 @@ public class Top_K_Frequent_Elements {
 
         for(int i=k-1;i>=0;i--){
             result[i]=pq.poll().getKey();
+        }
+        return result;
+    }
+
+    /*
+    Solution 3 - List sort 
+    */
+   public int[] topKFrequent2(int[] nums, int k) {
+        Map<Integer, Integer> hm =new HashMap<>();
+        for(int i:nums){
+            hm.put(i,hm.getOrDefault(i,0)+1);
+        }
+
+        List<Integer> l = new ArrayList<>(hm.keySet());
+        l.sort((a,b) -> hm.get(b) - hm.get(a));
+        int[] result = new int[k];
+        for(int i=0;i<k;i++){
+            result[i]=l.get(i);
         }
         return result;
     }
