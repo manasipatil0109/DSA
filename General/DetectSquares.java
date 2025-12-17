@@ -53,10 +53,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+ /*
+Solution 1 - very time complex
+*/
 public class DetectSquares {
-    /*
-    Solution 1 - very time complex
-    */
+   
     Map<Integer, List<Integer>> points;
 
     public DetectSquares() {
@@ -116,6 +117,60 @@ public class DetectSquares {
         }
         return count;
     }
+}
 
+/*
+Solution 2 - faster 
+*/
+class DetectSquares2 {
+    Map<Integer, Map<Integer, Integer>> points;
 
+    public DetectSquares2() {
+        points = new HashMap<>();
+    }
+    
+    public void add(int[] point) {
+        int x = point[0], y = point[1];
+        Map<Integer, Integer> counter = points.get(x);
+        if(counter == null){
+            counter = new HashMap<>();
+            points.put(x, counter);
+        }
+        counter.put(y,counter.getOrDefault(y,0)+1);
+    }
+    
+    public int count(int[] point) {
+
+        int x = point[0], y = point[1];
+        Map<Integer, Integer> yCoor = points.get(x);
+        if(yCoor == null)
+            return 0;
+        
+        int count = 0;
+
+        for(int yc : yCoor.keySet()){
+            if(yc == y)
+                continue;
+            
+            int length = Math.abs(yc-y);
+
+            Map<Integer, Integer> yp = points.get(x-length);
+            if(yp != null){
+                Integer y1 = yp.get(y);
+                Integer yc1 = yp.get(yc);
+                if(y1!=null && yc1!=null)
+                    count+=y1*yc1*yCoor.get(yc);
+            }
+
+            yp = points.get(x+length);
+            if(yp!=null){
+                Integer y1 = yp.get(y);
+                Integer yc1 = yp.get(yc);
+                if(y1!=null && yc1!=null)
+                    count+=y1*yc1*yCoor.get(yc);
+            }
+        }
+
+        return count;
+    }
 }
