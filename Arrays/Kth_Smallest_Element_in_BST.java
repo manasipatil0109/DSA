@@ -20,4 +20,25 @@ public class Kth_Smallest_Element_in_BST {
         preOrder(root, pq, k);
         return pq.poll();
     }
+
+
+    /*
+    Solution 2 - more optimised 
+    */
+    int result=-1, count=0;
+    private void inOrder(TreeNode root, int k){
+        if(root == null)
+            return;
+        inOrder(root.left, k);
+        count++;
+        if(k==count){
+            result = root.val;
+            return;
+        }
+        inOrder(root.right, k);
+    }
+    public int kthSmallest1(TreeNode root, int k) {
+        inOrder(root, k);
+        return result;
+    }
 }
