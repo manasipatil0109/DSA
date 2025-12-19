@@ -48,4 +48,26 @@ public class Subsets {
         }
         return result;
     }
+
+
+
+    /*
+    Solution 2 - recursive 
+    */
+   private void backtrac(int index, List<List<Integer>> result,List<Integer> subset, int[] nums){
+        if(index == nums.length){
+            result.add(new ArrayList<>(subset));
+            return;
+        }
+        subset.add(nums[index]);
+        backtrac(index+1, result, subset, nums);
+        subset.remove(subset.size()-1);
+        backtrac(index+1, result, subset, nums);
+    }
+
+    public List<List<Integer>> subsets1(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        backtrac(0,result,new ArrayList<>(), nums);
+        return result;
+    }
 }
