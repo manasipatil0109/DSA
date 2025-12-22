@@ -52,4 +52,28 @@ public class Best_Time_to_Buy_and_Sell_Stock_II {
         return profit;
     }
 
+
+    /*
+    Solution 2 
+    */
+    public int maxProfit1(int[] prices) {
+        int profit = 0;
+        int currMin = prices[0];
+        int fp = 0;
+        for(int i=1;i<prices.length;i++){
+            if(currMin>prices[i] ){
+                currMin = prices[i];
+            }else{
+                profit = Math.max(profit, prices[i]-currMin);
+            }
+            if(prices[i]<prices[i-1]){
+                currMin = prices[i];
+                fp+=profit;
+                profit = 0;
+            }
+        }
+        fp+=profit;
+        return fp;
+        
+    }
 }
