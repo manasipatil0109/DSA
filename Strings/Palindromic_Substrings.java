@@ -56,4 +56,27 @@ public class Palindromic_Substrings {
         }
         return result;
     }
+
+    /*
+    Solution 2 - optimized 
+    */
+   public int countSubstrings1(String s) {
+        int n = s.length();
+        boolean[][] ps = new boolean[n][n];
+        int count = 0;
+        for(int i=0;i<n;i++){
+            for(int j = i;j>=0;j--){
+                if(i==j)
+                    ps[i][j]= true;
+                else if(j==i-1)
+                    ps[i][j] = (s.charAt(i)==s.charAt(j));
+                else 
+                    ps[i][j] = (s.charAt(i)==s.charAt(j)) && ps[i-1][j+1];
+                if(ps[i][j]){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 }
