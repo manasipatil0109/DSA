@@ -50,4 +50,19 @@ public class Middle_of_Linked_List {
         }
         return m;
     }
+
+
+
+    /*
+    Solution 2 - slow fast pointer 
+    */
+    public ListNode middleNode1(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
 }
