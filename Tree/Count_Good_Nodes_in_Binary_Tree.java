@@ -88,4 +88,34 @@ public class Count_Good_Nodes_in_Binary_Tree {
         return count;
     }
 
+
+    /*
+    Solution 2 - optimized stack 
+    */
+    public int goodNodes2(TreeNode root) {
+        int count = 0;
+        Stack<TreeNode> st = new Stack<>();
+        Stack<Integer> max = new Stack<>();
+        st.push(root);
+        max.push(root.val);
+        while(!st.isEmpty()){
+            TreeNode curr = st.pop();
+            int m = max.pop();
+            if(curr.val>=m){
+                count++;
+                m = Math.max(curr.val,m);
+            }
+            if(curr.left!=null){
+                st.push(curr.left);
+                max.push(m);
+            }
+            if(curr.right!=null){
+                st.push(curr.right);
+                max.push(m);
+            }
+
+        }
+        return count;
+    }
+    
 }
