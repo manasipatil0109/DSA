@@ -53,4 +53,22 @@ public class Binary_Tree_Maximum_Path_Sum {
         backtrac(root);
         return max;
     }
+
+
+    /*
+    Solution 2 - polished code
+    */
+    int max1 = Integer.MIN_VALUE;
+    private int backtrac1(TreeNode root){
+        if(root == null)
+            return 0;
+        int l = Math.max(0,backtrac1(root.left));
+        int r = Math.max(0, backtrac1(root.right));
+        max1 = Math.max(max1, l+r+root.val);
+        return Math.max(l, r)+root.val;
+    }
+    public int maxPathSum1(TreeNode root) {
+        backtrac1(root);
+        return max;
+    }
 }
