@@ -82,4 +82,35 @@ public class Min_Stack {
         }
     }
 
+
+    /*
+    Solution 2 - with all O(1) 
+    */
+   class MinStack1 {
+        Stack<Integer> st;
+        Stack<Integer> mst;
+        public MinStack1() {
+            st = new Stack<>();
+            mst = new Stack<>();
+        }
+        
+        public void push(int val) {
+            st.push(val);
+            if(mst.isEmpty() || mst.peek()>=val)
+                mst.push(val);
+        }
+        
+        public void pop() {
+            if(st.pop().equals(mst.peek()))
+                mst.pop();
+        }
+        
+        public int top() {
+            return st.peek();
+        }
+        
+        public int getMin() {
+            return mst.peek();
+        }
+    }
 }
