@@ -60,4 +60,16 @@ public class Jump_Game {
         }
         return false;
     }
+
+    /*
+    Solution 2 
+    */
+    public boolean canJump1(int[] nums) {
+        int goal = nums.length-1;
+        for(int i = nums.length-2;i>=0;i--){
+            if(i+nums[i]>=goal)
+                goal = i;
+        }
+        return goal==0;
+    }
 }
