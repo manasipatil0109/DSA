@@ -18,6 +18,7 @@ package Tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class max_depth {
 
@@ -53,5 +54,33 @@ public class max_depth {
             } 
         }
         return level;
+    }
+
+    /*
+    Solution 3 - more time complex 
+    */
+    public int maxDepth2(TreeNode root) {
+        Stack<TreeNode> ele = new Stack<>();
+        Stack<Integer> depth = new Stack<>();
+        if(root == null)
+            return 0;
+        ele.push(root);
+        depth.push(1);
+
+        int ans =0;
+        while(!ele.isEmpty()){
+            int d = depth.pop();
+            ans = Math.max(ans, d);
+            TreeNode temp = ele.pop();
+            if(temp.left!=null){
+                ele.push(temp.left);
+                depth.push(d+1);
+            }
+            if(temp.right!=null){
+                ele.push(temp.right);
+                depth.push(d+1);
+            }
+        }
+        return ans;
     }
 }
