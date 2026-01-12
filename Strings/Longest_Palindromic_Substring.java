@@ -41,4 +41,31 @@ public class Longest_Palindromic_Substring {
         return ans;
     }
 
+
+    /*
+    Solution 2 - optimized 
+    */
+    private int expand(String s, int l, int r){
+        while(l>=0 && r<s.length() && s.charAt(l)==s.charAt(r)){
+            l--;
+            r++;
+        }
+        return r-l-1;
+    }
+    
+    public String longestPalindrome1(String s) {
+        int start = 0, maxLen = 0;
+        for(int i = 0; i<s.length(); i++){
+            int odd = expand(s, i, i);
+            int even = expand(s, i, i+1);
+            int len = Math.max(odd, even);
+
+            if(len>maxLen){
+                maxLen = len;
+                start = i - (len-1)/2;
+            }
+        }
+        return s.substring(start, start+maxLen);
+    }
+
 }
