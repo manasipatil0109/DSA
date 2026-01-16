@@ -43,4 +43,19 @@ public class Search_in_a_BST {
             temp = searchBST(root.right,val);
         return temp;
     }
+
+
+
+    /*
+    Solution 2 - non recursive 
+    */
+    public TreeNode searchBST1(TreeNode root, int val) {
+        while(root!=null && root.val != val){
+            if(root.val>val)
+                root=root.left;
+            else
+                root=root.right;
+        }
+        return root;
+    }
 }
