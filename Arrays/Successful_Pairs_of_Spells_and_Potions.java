@@ -45,7 +45,7 @@ import java.util.Arrays;
 
 public class Successful_Pairs_of_Spells_and_Potions {
     /*
-    Solution 1 
+    Solution 1 - gives TLE
     */
     public int[] successfulPairs(int[] spells, int[] potions, long success) {
 
@@ -58,6 +58,26 @@ public class Successful_Pairs_of_Spells_and_Potions {
                 }else
                     break;
             }
+        }
+        return arr;
+    }
+
+    /*
+    Solution 2 - optimized with binary search 
+    */
+    public int[] successfulPairs1(int[] spells, int[] potions, long success) {
+        int[] arr = new int[spells.length];
+        Arrays.sort(potions);
+        for(int i = 0; i<spells.length; i++){
+            int l = 0, r = potions.length-1;
+            while(l<=r){
+                int mid = l+(r-l)/2;
+                if((long)spells[i]*potions[mid]>= success)
+                    r = mid-1;
+                else
+                    l = mid+1;
+            }
+            arr[i]= potions.length-l;
         }
         return arr;
     }
