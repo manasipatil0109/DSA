@@ -38,29 +38,54 @@ package Arrays;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Online_Stock_Span {
     /*
     Solution 1 - Brute Force, too much time
     */
     class StockSpanner {
-    List<Integer> l;
+        List<Integer> l;
 
-    public StockSpanner() {
-        l = new ArrayList<>();
-    }
-    
-    public int next(int price) {
-        l.add(price);
-        int count = 0;
-        for(int i = l.size()-1;i>=0;i--){
-            if(l.get(i) <= price)
-                count++;
-            else
-                break;
+        public StockSpanner() {
+            l = new ArrayList<>();
         }
-        return count;
+        
+        public int next(int price) {
+            l.add(price);
+            int count = 0;
+            for(int i = l.size()-1;i>=0;i--){
+                if(l.get(i) <= price)
+                    count++;
+                else
+                    break;
+            }
+            return count;
 
+        }
     }
-}
+
+    /*
+    Solution 2 - using stack optimized 
+    */
+    class StockSpanner1 {
+        Stack<Integer> prices;
+        Stack<Integer> day;
+
+        public StockSpanner1() {
+            prices = new Stack<>();
+            day = new Stack<>();
+        }
+        
+        public int next(int price) {
+            int count = 1;
+            while(!prices.isEmpty() && prices.peek()<=price){
+                count+=day.pop();
+                prices.pop();
+            }
+            prices.push(price);
+            day.push(count);
+            return day.peek();
+        }
+    }
 }
