@@ -88,4 +88,36 @@ public class Online_Stock_Span {
             return day.peek();
         }
     }
+
+
+    /*
+    Solution 3 
+    */
+    class StockSpanner2 {
+
+        class Stock{
+            int price;
+            int day;
+
+            Stock(int p, int d){
+                price = p;
+                day =d;
+            }
+        }
+        Stack<Stock> spans;
+
+        public StockSpanner2() {
+            spans = new Stack<>();
+        }
+        
+        public int next(int price) {
+            int count = 1;
+            while(!spans.isEmpty() && spans.peek().price<=price){
+                count+=spans.peek().day;
+                spans.pop();
+            }
+            spans.push(new Stock(price, count));
+            return count;
+        }
+    }
 }
