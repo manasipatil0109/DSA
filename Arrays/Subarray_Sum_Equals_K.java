@@ -30,7 +30,7 @@ package Arrays;
 
 public class Subarray_Sum_Equals_K {
     /*
-    Solution 1 - TLE 
+    Solution 1 - brute force
     */
     public int subarraySum(int[] nums, int k) {
         int count = 0;
