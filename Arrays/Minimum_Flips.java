@@ -59,4 +59,29 @@ public class Minimum_Flips {
 
         return flip;
     }
+
+
+
+    /*
+    Solution 2 - using bitwise 
+    */
+    public int minFlips1(int a, int b, int c) {
+        int flip = 0;
+        while(a!=0 || b!=0 || c!=0){
+            int v1 = a & 1; // modulo by 2
+            int v2 = b & 1;
+            int v3 = c & 1;
+            if(v3 == 0){
+                flip+=v1+v2;
+            }else{
+                if(v1!=1 && v2!=1)
+                    flip++;
+            }
+            a>>=1; // divide by 2
+            b>>=1;
+            c>>=1;
+        }
+
+        return flip;
+    }
 }
