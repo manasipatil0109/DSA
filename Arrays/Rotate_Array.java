@@ -59,4 +59,25 @@ public class Rotate_Array {
             nums[i] = ans[i];
         }
     }
+
+
+    /*
+    Solution 2 - using single array and reverse 
+    */
+    private void reverse(int[] nums, int l, int r){
+        while(l<r){
+            int temp = nums[l];
+            nums[l] = nums[r];
+            nums[r] = temp;
+            l++;
+            r--;
+        }
+    }
+
+    public void rotate1(int[] nums, int k) {
+        k = k%nums.length;
+        reverse(nums, 0, nums.length-1);
+        reverse(nums, 0, k-1);
+        reverse(nums, k, nums.length-1);
+    }
 }
