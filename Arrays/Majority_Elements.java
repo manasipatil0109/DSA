@@ -20,9 +20,14 @@ Output: 2
  
 package Arrays;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Majority_Elements {
+
+    /*
+    Solution 1
+    */
     public int majorityElement(int[] nums) {
         HashMap<Integer, Integer> hm = new HashMap<>();
         for(int i:nums){
@@ -35,5 +40,31 @@ public class Majority_Elements {
                 return i;
         }
         return 0;
+    }
+
+
+    /*
+    Solution 2 - faster 
+    */
+    public int majorityElement1(int[] nums) {
+        Arrays.sort(nums);
+        int max = 0;
+        int count = 1;
+        int num = nums[0];
+        for(int i = 1; i< nums.length;i++){
+            if(nums[i]==nums[i-1])
+                count++;
+            else{
+                if(count>max){
+                    max = count;
+                    num = nums[i-1];
+                }
+                count = 1;    
+            }
+        }
+        if(count>max){
+            num = nums[nums.length-1];
+        }
+        return num;
     }
 }
