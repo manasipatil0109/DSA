@@ -56,4 +56,24 @@ public class Minimum_Absolute_Difference_in_BST {
         return min;
     }
 
+
+    /*
+    Solution 2 - faster
+    */
+    int min = Integer.MAX_VALUE;
+    Integer prev = null;
+    private void inorder(TreeNode root){
+        if(root==null)
+            return;
+        inorder(root.left);
+        if(prev!=null)
+            min = Math.min(min, root.val-prev);
+        prev = root.val;
+        inorder(root.right);
+    }
+    public int getMinimumDifference1(TreeNode root) {
+        inorder(root);
+        return min;
+    }
+    
 }
