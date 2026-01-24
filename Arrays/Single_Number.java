@@ -75,4 +75,17 @@ public class Single_Number {
         }
         return t;
     }
+
+
+    /*
+    Solution 3 - O(n) time and O(1) space 
+    */
+    public int singleNumber2(int[] nums) {
+
+        int ans = 0;
+        for(int i: nums){
+            ans^=i;
+        }
+        return ans;
+    }
 }
