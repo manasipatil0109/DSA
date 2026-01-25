@@ -50,4 +50,18 @@ public class Find_the_Difference {
         }
         return tch[tch.length-1];
     }
+
+
+
+    /*
+    Solution 2 - faster with xor because a^a=0 and a^0=a 
+    */
+    public char findTheDifference1(String s, String t) {
+        char ans = 0;
+        for(char c : s.toCharArray()) 
+            ans ^= c;
+        for(char c : t.toCharArray()) 
+            ans ^= c;
+        return ans;
+    }
 }
