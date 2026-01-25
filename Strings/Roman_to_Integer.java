@@ -65,4 +65,35 @@ public class Roman_to_Integer {
         }
         return val;
     }
+
+    /*
+    Solution 2 - faster 
+    */
+    private int conversion(char c){
+        switch(c){
+            case 'I': return 1;
+            case 'V': return 5;
+            case 'X': return 10;
+            case 'L': return 50;
+            case 'C': return 100;
+            case 'D': return 500;
+            case 'M': return 1000;
+            default : return 0;
+        }
+    }
+    public int romanToInt1(String s) {
+        int val = 0;
+        for(int i = 0; i<s.length()-1; i++){
+            int next = conversion(s.charAt(i));
+            if(next < conversion(s.charAt(i+1))){
+                val-=next;
+            }else{
+                val+=next;
+            }
+        }
+        val += conversion(s.charAt(s.length() - 1));
+        return val;
+        
+    }
+
 }
